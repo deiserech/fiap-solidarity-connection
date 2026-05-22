@@ -13,6 +13,7 @@ permissions:
   packages: write
 
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
   DOTNET_VERSION: '8.0.x'
   BUILD_CONFIGURATION: Release
   IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fiap-solidarity-connection
