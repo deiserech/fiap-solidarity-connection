@@ -97,13 +97,13 @@ dotnet restore SolidarityConnection.sln
 docker run -d --name solidarity-core-sql -e ACCEPT_EULA=Y -e MSSQL_SA_PASSWORD=<SUA_SENHA_FORTE> -p 1433:1433 mcr.microsoft.com/mssql/server:2025-latest
 ```
 
-3. Configure a connection string do banco e a connection string do Service Bus por variavel de ambiente ou user-secrets. A aplicacao tambem carrega `appsettings.Development.json` quando executada em desenvolvimento.
+3. Configure a connection string do banco e a connection string do Service Bus por variavel de ambiente ou core-secret. A aplicacao tambem carrega `appsettings.Development.json` quando executada em desenvolvimento.
 
-Exemplo com user-secrets:
+Exemplo com core-secret:
 
 ```bash
-dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=localhost,1433;Database=core-db;User Id=SA;Password=<SUA_SENHA_FORTE>;TrustServerCertificate=True;Encrypt=False;" --project src/SolidarityConnection.Api/SolidarityConnection.Api.csproj
-dotnet user-secrets set "ServiceBus:ConnectionString" "Endpoint=sb://<NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<NOME_DA_CHAVE>;SharedAccessKey=<SUA_CHAVE>;" --project src/SolidarityConnection.Api/SolidarityConnection.Api.csproj
+dotnet core-secret set "ConnectionStrings:DefaultConnection" "Server=localhost,1433;Database=core-db;User Id=SA;Password=<SUA_SENHA_FORTE>;TrustServerCertificate=True;Encrypt=False;" --project src/SolidarityConnection.Api/SolidarityConnection.Api.csproj
+dotnet core-secret set "ServiceBus:ConnectionString" "Endpoint=sb://<NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<NOME_DA_CHAVE>;SharedAccessKey=<SUA_CHAVE>;" --project src/SolidarityConnection.Api/SolidarityConnection.Api.csproj
 ```
 
 4. Execute a aplicacao:
@@ -189,12 +189,14 @@ No ambiente local, a connection string normalmente aponta para `localhost,1433` 
 
 ## Pipelines
 
-O pipeline esta em `pipeline/azure-pipelines.yml` e executa:
+O pipeline principal esta em `.github/workflows/ci-cd.yml` e executa:
 
 - Build
 - Testes
-- Build e publish da imagem
-- Deploy no AKS nas branches `develop` e `main`
+- Build da imagem Docker no CI
+- Publicacao da imagem no GitHub Container Registry
+
+O gatilho principal e a branch `main`, entao cada push nela dispara o pipeline.
 
 ## Documentacao adicional
 
