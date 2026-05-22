@@ -18,6 +18,8 @@ Subir os dois servicos localmente com Docker Compose para validar o fluxo fim a 
 4. Azure Service Bus acessivel.
 5. (Opcional) New Relic License Key para telemetria.
 
+Se voce estiver usando o SQL Server trazido pelo proprio Docker Compose desta validacao, o client no Windows deve conectar em `localhost,1434`.
+
 ## Passo 1 - Criar arquivo .env
 
 No repositorio `fiap-solidarity-connection`, crie um arquivo `.env` na raiz com este modelo:
@@ -70,9 +72,6 @@ services:
       DONATION_TOPIC: donation-requested
       DONATION_SUBSCRIPTION: solidarity-connection-donations-api
       DonationProcessing__MaxAttempts: "3"
-      Features__DonationGateway__Enabled: "false"
-      DonationGateway__BaseUrl: "http://localhost"
-      DonationGateway__FunctionRoute: "/api/donations/authorize"
       NewRelic__OtlpEndpoint: https://otlp.nr-data.net:4317
       NewRelic__Protocol: grpc
       NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY}
@@ -83,17 +82,17 @@ services:
 Na raiz de `fiap-solidarity-connection`:
 
 ```bash
-docker compose -f docker-compose.validation.yml build
+docker compose --env-file .env -f docker-compose.validation.yml build 
 ```
 
 ```bash
-docker compose -f docker-compose.validation.yml up -d
+docker compose --env-file .env -f docker-compose.validation.yml up -d 
 ```
 
 Verificar status:
 
 ```bash
-docker compose -f docker-compose.validation.yml ps
+docker compose --env-file .env -f docker-compose.validation.yml ps 
 ```
 
 Verificar health:

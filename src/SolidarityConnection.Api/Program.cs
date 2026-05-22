@@ -48,6 +48,8 @@ builder.Services.AddHostedService<DonationProcessedConsumer>();
 
 var app = builder.Build();
 
+await app.EnsureDatabaseAndMigrationsAsync(dbConnectionString);
+
 app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseMiddleware<TracingEnrichmentMiddleware>();
 
