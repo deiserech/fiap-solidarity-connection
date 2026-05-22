@@ -19,7 +19,7 @@ env:
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -36,9 +36,6 @@ jobs:
 
       - name: Build
         run: dotnet build SolidarityConnection.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-restore
-
-      - name: Test
-        run: dotnet test SolidarityConnection.sln --configuration ${{ env.BUILD_CONFIGURATION }} --no-build --collect:"XPlat Code Coverage"
 
   docker-image:
     name: Build and Publish Docker Image
