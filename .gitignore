@@ -63,3 +63,5 @@ __azurite_db_queue__.json
 __azurite_db_queue_extent__.json
 /src/SolidarityConnection.Api/Properties/launchSettings.json
 .env
+k8s/shared-secret-local.yaml
+k8s/core-secret-local.yaml
