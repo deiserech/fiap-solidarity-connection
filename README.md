@@ -160,7 +160,7 @@ Aplicar:
 ```bash
 kubectl apply -f k8s/configmap.yaml
 kubectl apply -f k8s/shared-secret.yaml
-kubectl apply -f k8s/users-secret.yaml
+kubectl apply -f k8s/core-secret.yaml
 kubectl apply -f k8s/service.yaml
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/hpa.yaml
@@ -192,16 +192,8 @@ No ambiente local, a connection string normalmente aponta para `localhost,1433` 
 O pipeline principal esta em `.github/workflows/ci-cd.yml` e executa:
 
 - Build
-- Testes
 - Build da imagem Docker no CI
 - Publicacao da imagem no GitHub Container Registry
 
 O gatilho principal e a branch `main`, entao cada push nela dispara o pipeline.
 
-## Documentacao adicional
-
-- `others/docs/arquitetura-microsservicos-doacoes.md`
-- `others/docs/plano-implementacao-mvp.md`
-- `others/docs/validacao-local-docker-compose.md`
-- `others/docs/validacao-kubernetes-docker-desktop.md`
-- `others/docs/roteiro-video-apresentacao-15min.md`

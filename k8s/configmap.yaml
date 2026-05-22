@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: users-api-config
+  name: core-api-config
   namespace: solidarity-connection
   labels:
     app: solidarity-connection
@@ -9,3 +9,5 @@ data:
   ASPNETCORE_ENVIRONMENT: "Development"
   NewRelic__OtlpEndpoint: "https://otlp.nr-data.net:4317"
   NewRelic__Protocol: "grpc"
+  DONATION_PROCESSED_TOPIC: "donation-processed"
+  DONATION_PROCESSED_SUBSCRIPTION: "solidarity-connection-core-api"

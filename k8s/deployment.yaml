@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: solidarity-connection
-          image: solidarityconnectionacr.azurecr.io/solidarity-connection:latest
+          image: ghcr.io/deiserech/fiap-solidarity-connection:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 80
@@ -48,56 +48,56 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               valueFrom:
                 configMapKeyRef:
-                  name: users-api-config
+                  name: core-api-config
                   key: ASPNETCORE_ENVIRONMENT
             - name: DONATION_PROCESSED_TOPIC
               valueFrom:
                 configMapKeyRef:
-                  name: users-api-config
+                  name: core-api-config
                   key: DONATION_PROCESSED_TOPIC
             - name: DONATION_PROCESSED_SUBSCRIPTION
               valueFrom:
                 configMapKeyRef:
-                  name: users-api-config
+                  name: core-api-config
                   key: DONATION_PROCESSED_SUBSCRIPTION
             - name: NewRelic__OtlpEndpoint
               valueFrom:
                 configMapKeyRef:
-                  name: users-api-config
+                  name: core-api-config
                   key: NewRelic__OtlpEndpoint
             - name: NewRelic__Protocol
               valueFrom:
                 configMapKeyRef:
-                  name: users-api-config
+                  name: core-api-config
                   key: NewRelic__Protocol
             - name: ConnectionStrings__DefaultConnection
               valueFrom:
                 secretKeyRef:
-                  name: fiap-users-secret
+                  name: core-secret
                   key: ConnectionStrings__DefaultConnection
             - name: ServiceBus__ConnectionString
               valueFrom:
                 secretKeyRef:
-                  name: fiap-shared-secret
+                  name: shared-secret
                   key: ServiceBus__ConnectionString
             - name: NEW_RELIC_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
-                  name: fiap-shared-secret
+                  name: shared-secret
                   key: NEW_RELIC_LICENSE_KEY
             - name: JwtSettings__SecretKey
               valueFrom:
                 secretKeyRef:
-                  name: fiap-users-secret
+                  name: core-secret
                   key: JwtSettings__SecretKey
             - name: JwtSettings__Issuer
               valueFrom:
                 secretKeyRef:
-                  name: fiap-users-secret
+                  name: core-secret
                   key: JwtSettings__Issuer
             - name: JwtSettings__Audience
               valueFrom:
                 secretKeyRef:
-                  name: fiap-users-secret
+                  name: core-secret
                   key: JwtSettings__Audience
 
