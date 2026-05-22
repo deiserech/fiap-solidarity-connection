@@ -7,8 +7,5 @@ metadata:
     app: solidarity-connection
 data:
   ASPNETCORE_ENVIRONMENT: "Development"
-  ServiceBus__UseWebSockets: "false"
-  DONATION_PROCESSED_TOPIC: "donation-processed"
-  DONATION_PROCESSED_SUBSCRIPTION: "solidarity-connection-core-api"
   NewRelic__OtlpEndpoint: "https://otlp.nr-data.net:4317"
   NewRelic__Protocol: "grpc"

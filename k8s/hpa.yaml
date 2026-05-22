@@ -9,7 +9,7 @@ spec:
     kind: Deployment
     name: solidarity-connection
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 3
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 60
