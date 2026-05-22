@@ -22,7 +22,6 @@ O Core funciona integrado com o repositório de Donations. No fluxo principal:
 - `tests/SolidarityConnection.Tests`: testes automatizados
 - `others/docs`: documentacao de apoio e validacoes
 - `k8s/`: manifests Kubernetes
-- `pipeline/`: Azure Pipelines
 
 ## Requisitos
 
